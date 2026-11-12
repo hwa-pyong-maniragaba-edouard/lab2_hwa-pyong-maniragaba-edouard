@@ -73,7 +73,21 @@ def evaluate_grades(data):
         return
     print("Weight check passed.")
 
-    # TODO: c) Calculate the Final Grade and GPA
+    # c) Calculate the Final Grade and GPA
+    formative_earned = 0
+    summative_earned = 0
+    for item in data:
+        points = item["score"] * item["weight"] / 100
+        if item["group"].strip().lower() == "formative":
+            formative_earned += points
+        else:
+            summative_earned += points
+    total_grade = formative_earned + summative_earned
+    gpa = total_grade / 100 * 5.0
+    print(f"Formative: {formative_earned:.2f}/60")
+    print(f"Summative: {summative_earned:.2f}/40")
+    print(f"Final grade: {total_grade:.2f}/100")
+    print(f"GPA: {gpa:.2f}/5.0")
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
     # TODO: e) Check for failed formative assignments (< 50%)
     #          and determine which one(s) have the highest weight for resubmission.
