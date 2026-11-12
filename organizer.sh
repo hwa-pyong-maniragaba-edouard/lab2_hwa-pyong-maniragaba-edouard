@@ -4,6 +4,7 @@
 
 ARCHIVE_DIR="archive"
 SOURCE_FILE="grades.csv"
+LOG_FILE="organizer.log"
 
 # this code is to make sure grades.csv exists before doing anything
 if [ ! -f "$SOURCE_FILE" ]; then
@@ -32,3 +33,7 @@ echo "Archived '$SOURCE_FILE' as '$ARCHIVE_DIR/$ARCHIVED_NAME'"
 # this creates a new empty grades.csv so it is ready for the next batch
 touch "$SOURCE_FILE"
 echo "New empty '$SOURCE_FILE' created."
+
+# this adds the timestamp, original filename and archived filename to the log
+echo "[$TIMESTAMP] Original: $SOURCE_FILE | Archived as: $ARCHIVED_NAME" >> "$LOG_FILE"
+echo "Logged to '$LOG_FILE'."
