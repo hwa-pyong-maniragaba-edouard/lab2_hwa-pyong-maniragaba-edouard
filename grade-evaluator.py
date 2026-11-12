@@ -112,8 +112,18 @@ def evaluate_grades(data):
         for item in failed:
             if item["weight"] == highest_weight:
                 resubmit.append(item)
-    #          and determine which one(s) have the highest weight for resubmission.
-    # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
+                resubmit.append(item)
+
+        # f) Print the final decision (PASSED / FAILED) and resubmission options
+        print(f"\nFinal status: {status}")
+        if len(resubmit) > 0:
+            print("Eligible for resubmission (highest weight failed formative):")
+            for item in resubmit:
+                print(
+                    f"  - {item['assignment']} (score {item['score']:g}, weight {item['weight']:g})"
+                )
+        else:
+            print("No resubmission needed.")
 
 
 if __name__ == "__main__":
