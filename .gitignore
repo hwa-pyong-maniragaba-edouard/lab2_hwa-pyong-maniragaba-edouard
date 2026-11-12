@@ -1,0 +1,7 @@
+# Output created by organizer.sh
+archive/
+organizer.log
+
+# Python
+__pycache__/
+*.pyc
