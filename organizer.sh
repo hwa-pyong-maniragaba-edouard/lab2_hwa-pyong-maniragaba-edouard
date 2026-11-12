@@ -27,3 +27,8 @@ if ! mv "$SOURCE_FILE" "$ARCHIVE_DIR/$ARCHIVED_NAME"; then
     exit 1
 fi
 echo "Archived '$SOURCE_FILE' as '$ARCHIVE_DIR/$ARCHIVED_NAME'"
+
+
+# this creates a new empty grades.csv so it is ready for the next batch
+touch "$SOURCE_FILE"
+echo "New empty '$SOURCE_FILE' created."
