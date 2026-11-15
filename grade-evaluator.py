@@ -25,7 +25,7 @@ def load_csv_data():
     assignments = []
 
     try:
-        with open(filename, mode="r", encoding="utf-8") as file:
+        with open(filename, mode="r", encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
 
             # The header row must contain every column we need
