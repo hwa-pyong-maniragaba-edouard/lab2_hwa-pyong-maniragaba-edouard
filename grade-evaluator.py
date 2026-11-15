@@ -30,7 +30,10 @@ def load_csv_data():
 
             # The header row must contain every column we need
             columns = reader.fieldnames or []
-            missing = [name for name in REQUIRED_COLUMNS if name not in columns]
+            missing = []
+            for name in REQUIRED_COLUMNS:
+                if name not in columns:
+                    missing.append(name)
             if len(missing) > 0:
                 print(
                     f"Error: '{filename}' is missing column(s): {', '.join(missing)}."
@@ -152,7 +155,10 @@ def evaluate_grades(data):
         if item["group"].strip().lower() == "formative" and item["score"] < 50:
             failed.append(item)
 
-    highest_weight = max((item["weight"] for item in failed), default=0)
+    highest_weight = 0
+    for item in failed:
+        if item["weight"] > highest_weight:
+            highest_weight = item["weight"]
 
     resubmit = []
     for item in failed:
